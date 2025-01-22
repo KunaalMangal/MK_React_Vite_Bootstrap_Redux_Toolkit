@@ -6,9 +6,10 @@ import "./App.css";
 import { PublicRoutes } from "./routes/PublicRoutes";
 import { PrivateRoutes } from "./routes/PrivateRoutes";
 import { AuthLayout, DashboardLayout } from "./layouts";
+import { useAppSelector } from "./store/hooks/hooks";
 
 function App() {
-  const isLogin = true;
+  const isLogin = useAppSelector((state) => state.auth.isLogin);
 
   const renderNestedRoutes = (routes) => {
     return routes.map((route, index) => {
@@ -62,7 +63,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router />
+        <Router />
     </ThemeProvider>
   );
 }
