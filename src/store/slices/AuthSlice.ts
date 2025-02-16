@@ -8,7 +8,7 @@ interface AuthStateInterface {
 }
 
 const initialAuthState: AuthStateInterface = {
-    isLogin: true,
+    isLogin: false,
     currentUser: {},
     token: "",
     deviceToken: "",
@@ -19,11 +19,11 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: initialAuthState,
     reducers: {
-        onLogin: (state, action: PayloadAction<{ currentUser: Record<string, unknown>, token: string }>) => {
-            const { currentUser, token } = action.payload;
+        onLogin: (state, action: PayloadAction<AuthStateInterface>) => {
+            const { currentUser, token, isLogin } = action.payload;
             state.currentUser = currentUser;
             state.token = token;
-            state.isLogin = true;
+            state.isLogin = isLogin;
         },
     }
 });
